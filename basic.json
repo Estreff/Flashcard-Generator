@@ -26,5 +26,9 @@
   {
     "front": "What is the biggest ski resort in Colorado?",
     "back": "Vail Mountain"
+  },
+  {
+    "front": "What is the nickname for Denver?",
+    "back": "Mile High City"
   }
 ]

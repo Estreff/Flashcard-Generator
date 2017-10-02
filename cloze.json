@@ -8,5 +8,15 @@
     "text": "Donald Trump is the current POTUS!",
     "cloze": "Donald Trump",
     "partial": "... is the current POTUS!"
+  },
+  {
+    "text": "The New England Patriots won Super Bowl 51.",
+    "cloze": "New England Patriots",
+    "partial": "The ... won Super Bowl 51."
+  },
+  {
+    "text": "The Denver Broncos won Super Bowl 50!!",
+    "cloze": "Denver Broncos",
+    "partial": "The ... won Super Bowl 50!!"
   }
 ]

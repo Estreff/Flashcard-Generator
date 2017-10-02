@@ -1,5 +1,6 @@
 var basicCard = require('./basicCard'); 
 var clozeCard = require('./clozeCard'); 
+var playGame = require('./playGame');
 var basicObj = require('./basic.json');
 var clozeObj = require('./cloze.json');
 var inquirer = require('inquirer');
@@ -12,22 +13,22 @@ function createCard() {
             {
                 type: 'list',
                 name: 'createType',
-                message: 'What type of card would you like to create?',
-                choices: ['basicCard', 'clozeCard', 'Exit'] 
+                message: 'Select what you would like to do:',
+                choices: ['Create a Basic Card', 'Create a Cloze Card', 'Play Game', 'Exit'] 
             }
     ]).then(function(cardType) {
-        if(cardType.createType === 'basicCard') {
+        if(cardType.createType === 'Create a Basic Card') {
             inquirer
                 .prompt([
                     {
                         type:'input',
                         name: 'basicQuestion',
-                        message: 'What is the question you would like to ask?'
+                        message: 'What is the question you would like to ask?'.magenta
                     },
                     {
                         type:'input',
                         name: 'basicAnswer',
-                        message: 'What is the answer to the question?'
+                        message: 'What is the answer to the question?'.green
                     }
                 ]).then(function(basicStatement){
                     var newBasic = new basicCard(basicStatement.basicQuestion, basicStatement.basicAnswer);
@@ -41,18 +42,18 @@ function createCard() {
                 }).then(function() {
                     createCard();
                 });
-        } else if(cardType.createType === 'clozeCard') {
+        } else if(cardType.createType === 'Create a Cloze Card') {
             inquirer
                 .prompt([
                     {
                         type:'input',
                         name: 'clozeQuestion',
-                        message: 'What is the statement that you would like to show?'
+                        message: 'What is the statement that you would like to show?'.magenta
                     },
                     {
                         type:'input',
                         name: 'clozeAnswer',
-                        message: 'What words would you like to omit from statement?'
+                        message: 'What words would you like to omit from statement?'.green
                     }
                 ]).then(function(clozeStatement){
                     var newCloze = new clozeCard(clozeStatement.clozeQuestion, clozeStatement.clozeAnswer);
@@ -66,7 +67,9 @@ function createCard() {
                 }).then(function() {
                     createCard();
                 });
-        } else {
+        }else if(cardType.createType === 'Play Game') {
+            playGame();
+        }else {
             return;
         }
     });

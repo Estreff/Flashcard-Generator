@@ -12,7 +12,7 @@ inquirer
             type: 'list',
             name: 'gameType',
             message: 'Which game would you like to play?'.red,
-            choices: ['Basic', 'Cloze', 'Both']
+            choices: ['Basic', 'Cloze', 'Both', 'Exit']
         }
     ]).then(function(gameReady){
         if(gameReady.gameType === 'Basic') {
@@ -24,7 +24,7 @@ inquirer
                             type: 'list',
                             name: 'basicFront',
                             message: 'Please show me the Flashcard!!'.green, 
-                            choices: ['Play', 'Exit']   
+                            choices: ['Play', 'Main Menu']   
                         }
                     ]).then(function(startBasic){
                         if(startBasic.basicFront === 'Play') {
@@ -49,8 +49,7 @@ inquirer
                                     playBasic();
                                 })
                         } else {
-                            return;
-
+                            playGame();
                         }
                     });
             }
@@ -63,7 +62,7 @@ inquirer
                             type: 'list',
                             name: 'clozeStatement',
                             message: 'Please show me the statement!!'.green, 
-                            choices: ['Play', 'Exit']   
+                            choices: ['Play', 'Main Menu']   
                         }
                     ]).then(function(startCloze){
                         if(startCloze.clozeStatement == 'Play') {
@@ -88,11 +87,11 @@ inquirer
                                     playCloze();
                                 })
                         } else {
-                            return;
+                            playGame();
                         }
                     });
             }
-        }else {
+        }else if(gameReady.gameType == "Both") {
             playBoth();
             function playBoth() {            
                 inquirer   
@@ -101,7 +100,7 @@ inquirer
                             type: 'list',
                             name: 'bothQuestion',
                             message: 'Please show me the Statement or FlashCard!!'.green, 
-                            choices: ['Play', 'Exit']   
+                            choices: ['Play', 'Main Menu']   
                         }
                     ]).then(function(startBoth){
                         if(startBoth.bothQuestion == 'Play') {
@@ -145,13 +144,15 @@ inquirer
                                     playBoth();
                                 })
                         } else {
-                            return;
+                            playGame();
                         }
                     });
             }
 
+        } else {
+            return;
         }
     });
 }
 
-playGame();
+module.exports = playGame;
