@@ -34,22 +34,23 @@ inquirer
                             inquirer
                                 .prompt([
                                     {
-                                        type: 'confirm',
+                                        type: 'input',
                                         name: 'basicBack',
-                                        message: 'Please show me the Answer!!'.green, 
-                                        default: true   
+                                        message: 'Please answer the question: '.green  
                                     }
                                 ]).then(function(answer){
-                                    if(answer.basicBack === true) {
-                                        console.log(`${basicObj[randomNumber].back}\n`.yellow);
+                                    if(answer.basicBack === basicObj[randomNumber].back) {
+                                        console.log(`That is the correct answer!!!`.yellow);
                                     } else {
-                                        return;
+                                        console.log(`That answer is INCORRECT!!!!`.red.bold);
+                                        console.log(`The correct answer is ${basicObj[randomNumber].back}\n`.yellow);
                                     }
                                 }).then(function() {
                                     playBasic();
                                 })
                         } else {
                             return;
+
                         }
                     });
             }
@@ -72,16 +73,16 @@ inquirer
                             inquirer
                                 .prompt([
                                     {
-                                        type: 'confirm',
+                                        type: 'input',
                                         name: 'clozeAnswer',
-                                        message: 'Please show me the Answer!!'.green, 
-                                        default: true   
+                                        message: 'Please fill in the ... : '.green
                                     }
                                 ]).then(function(answer){
-                                    if(answer.clozeAnswer === true) {
-                                        console.log(`${clozeObj[randomNumber].cloze}\n`.yellow);
+                                    if(answer.clozeAnswer === clozeObj[randomNumber].cloze) {
+                                        console.log(`That is the correct answer!!!`.yellow);
                                     } else {
-                                        return;
+                                        console.log(`That answer is INCORRECT!!!!`.red.bold);
+                                        console.log(`The correct answer is ${clozeObj[randomNumber].cloze}!!\n`.yellow);
                                     }
                                 }).then(function() {
                                     playCloze();
@@ -120,21 +121,26 @@ inquirer
                             inquirer
                                 .prompt([
                                     {
-                                        type: 'confirm',
+                                        type: 'input',
                                         name: 'bothAnswer',
-                                        message: 'Please show me the Answer!!'.green, 
-                                        default: true   
+                                        message: 'Please answer the question or fill in the ... : '.green
                                     }
                                 ]).then(function(both){
-                                    if(both.bothAnswer === true) {
                                         if(gameType === basicObj) {
-                                            console.log(`${basicObj[randomNumber].back}\n`.yellow);
+                                            if(both.bothAnswer == basicObj[randomNumber].back) {
+                                                console.log(`That is the correct answer!!!`.yellow);
+                                            } else {
+                                                console.log(`That answer is INCORRECT!!!!`.red.bold);
+                                                console.log(`The correct answer is ${basicObj[randomNumber].back}\n`.yellow);
+                                            }    
                                         } else {
-                                            console.log(`${clozeObj[randomNumber].cloze}\n`.yellow);
+                                            if(both.bothAnswer == clozeObj[randomNumber].cloze) {
+                                                console.log(`That is the correct answer!!!`.yellow);
+                                            } else {
+                                                console.log(`That answer is INCORRECT!!!!`.red.bold);
+                                                console.log(`The correct anser is ${clozeObj[randomNumber].cloze}\n`.yellow);
+                                            }
                                         }
-                                    } else {
-                                        return;
-                                    }
                                 }).then(function() {
                                     playBoth();
                                 })
